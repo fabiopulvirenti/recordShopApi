@@ -63,7 +63,7 @@ public class AlbumControllerTest {
 
         when(mockAlbumServiceImpl.getAllAlbums()).thenReturn(albumList);
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.get("/api/v1/book/"))
+                        MockMvcRequestBuilders.get("/api/v1/albums"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].album_title").value("the Wall"))
@@ -72,7 +72,7 @@ public class AlbumControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[2].id").value(3))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[2].album_title").value("Chopin Etude"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].id").value(4))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[2].album_title").value("Those were the days"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[3].album_title").value("Those were the days"));
     }
 
 
