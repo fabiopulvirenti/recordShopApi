@@ -50,10 +50,10 @@ public class AlbumControllerTest {
     @DisplayName("Test method returns a list of all albums")
     public void testGetAllAlbums() throws Exception{
 
-        Author author1 = new Author("PinkFloyd");
-        Author author2 = new Author("Janis Joplin");
-        Author author3 = new Author("Maurizio Pollini");
-        Author author4 = new Author("Dolly Parton");
+        Author author1 = new Author(1,"PinkFloyd");
+        Author author2 = new Author(2,"Janis Joplin");
+        Author author3 = new Author(3,"Maurizio Pollini");
+        Author author4 = new Author(4,"Dolly Parton");
         List<Album> albumList = new ArrayList<>();
         albumList.add(new Album(1L,"the Wall",author1, Genre.Rock,1979));
         albumList.add(new Album(2L,"Pearl",author2, Genre.Blues,1972));

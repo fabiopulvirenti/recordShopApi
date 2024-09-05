@@ -22,9 +22,9 @@ public class Author {
 
     private String authorName;
 
-    public Author(String pinkFloyd) {
-        this.authorName = pinkFloyd;
-    }
+//    public Author(String pinkFloyd) {
+//        this.authorName = pinkFloyd;
+//    }
 
 //    public Author() {
 //    }
