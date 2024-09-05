@@ -21,8 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @AutoConfigureMockMvc
@@ -61,6 +62,8 @@ public class AlbumControllerTest {
         albumList.add(new Album(4L,"Those were the days",author4, Genre.Country_music,2005));
 
 
+
+
         when(mockAlbumServiceImpl.getAllAlbums()).thenReturn(albumList);
         this.mockMvcController.perform(
                         MockMvcRequestBuilders.get("/api/v1/albums"))
@@ -74,6 +77,34 @@ public class AlbumControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].id").value(4))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].album_title").value("Those were the days"));
     }
+
+    @Test
+    @DisplayName("Test method returns an album by Id")
+    void testGetAlbumByID() throws Exception{
+        Author author1 = new Author(1,"PinkFloyd");
+        Author author2 = new Author(2,"Janis Joplin");
+        Author author3 = new Author(3,"Maurizio Pollini");
+        Author author4 = new Author(4,"Dolly Parton");
+
+        Album album1= new Album(1L,"the Wall",author1, Genre.Rock,1979);
+        Album album2= new Album(2L,"Pearl",author2, Genre.Blues,1972);
+        Album album3= new Album(3L,"Chopin Etudes",author3, Genre.Classical_music,1973);
+        Album album4= new Album(4L,"Those were the days",author4, Genre.Country_music,2005);
+
+
+
+        when(mockAlbumServiceImpl.getAlbumById(1L)).thenReturn(Optional.of(album1));
+        this.mockMvcController.perform(
+                MockMvcRequestBuilders.get("/api/v1/albums/1"))
+
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.album_title").value("the Wall"));
+
+        verify(mockAlbumServiceImpl).getAlbumById(1L);
+    }
+
+
 
 
 
