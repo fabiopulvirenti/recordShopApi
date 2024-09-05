@@ -21,4 +21,14 @@ public class Author {
     private long id;
 
     private String authorName;
+
+    public Author(String pinkFloyd) {
+        this.authorName = pinkFloyd;
+    }
+
+//    public Author() {
+//    }
+//    public Author(String authorName) {
+//        this.authorName = authorName;
+//    }
 }
