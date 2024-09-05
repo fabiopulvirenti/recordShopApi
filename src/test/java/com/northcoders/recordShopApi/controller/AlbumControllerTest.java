@@ -70,7 +70,7 @@ public class AlbumControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].id").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].album_title").value("Pearl"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[2].id").value(3))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[2].album_title").value("Chopin Etude"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[2].album_title").value("Chopin Etudes"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].id").value(4))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].album_title").value("Those were the days"));
     }
