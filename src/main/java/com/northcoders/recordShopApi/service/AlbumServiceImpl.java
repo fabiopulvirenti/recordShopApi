@@ -5,6 +5,7 @@ import com.northcoders.recordShopApi.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,11 +16,16 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public List<Album> getAllAlbums() {
-        return List.of();
+        List<Album> AlbumList = new ArrayList<>();
+        albumRepository.findAll().forEach(AlbumList::add);
+
+        return AlbumList;
     }
+
 
     @Override
     public Album getAlbumById(long id) {
         return null;
     }
 }
+
