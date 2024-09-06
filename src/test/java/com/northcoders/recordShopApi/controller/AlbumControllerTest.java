@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -122,6 +123,25 @@ public class AlbumControllerTest {
 
         verify(mockAlbumServiceImpl, times(1)).insertAlbum(album1);
     }
+
+    @Test
+    void updateAlbumByID() throws Exception {
+
+        Long id =1L;
+        Author author1 = new Author(1,"PinkFloyd");
+        Author author2 = new Author(2,"Janis Joplin");
+
+        Album albumToUpdate = new Album(id,"the Wall",author1, Genre.Rock,1979);
+        Album updatedAlbum =  new Album(id,"Pearl",author2, Genre.Blues,1972);
+
+        when(mockAlbumServiceImpl.getAlbumById(id)).thenReturn(Optional.of(updatedAlbum));
+        ResponseEntity<Album> responseEntity =albumController.updateAlbum(id, albumToUpdate);
+
+        verify(mockAlbumServiceImpl, times(1)).changeAlbum(id, albumToUpdate);
+
+    }
+
+
 
 
 

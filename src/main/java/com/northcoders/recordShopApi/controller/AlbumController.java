@@ -42,7 +42,7 @@ public class AlbumController {
     }
 
     @PutMapping("/albums/{id}")
-    public ResponseEntity<Album> updateBook(@PathVariable Long id, @RequestBody Album album){
+    public ResponseEntity<Album> updateAlbum(@PathVariable Long id, @RequestBody Album album){
         Optional<Album> newVersionOpt = this.albumService.changeAlbum(id, album);
         if(newVersionOpt.isPresent()){
             return new ResponseEntity<>(newVersionOpt.get(), HttpStatus.OK);
