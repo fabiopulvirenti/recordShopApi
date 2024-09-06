@@ -3,6 +3,8 @@ package com.northcoders.recordShopApi.controller;
 import com.northcoders.recordShopApi.model.Album;
 import com.northcoders.recordShopApi.model.Author;
 import com.northcoders.recordShopApi.service.AlbumService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1")
 public class AlbumController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AlbumController.class);
 
     @Autowired
     private AlbumService albumService;
@@ -51,8 +55,14 @@ public class AlbumController {
         }
     }
 
+    @DeleteMapping("/albums/{id}")
+    public ResponseEntity<String> deleteAlbumById(@PathVariable long id){
+        this.albumService.deleteAlbum(id);
+        ResponseEntity<String> response = new ResponseEntity<>("Album deleted successfully", HttpStatus.OK);
+        LOGGER.info("Album deleted: {}", response);
 
-
+        return response;
+    }
 
 
 }

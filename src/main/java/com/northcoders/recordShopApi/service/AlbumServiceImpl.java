@@ -47,6 +47,11 @@ public class AlbumServiceImpl implements AlbumService {
         Album updatedAlbum = this.albumRepository.save(newVersion);
         return Optional.of(updatedAlbum);
     }
+
+    @Override
+    public void deleteAlbum(long id) {
+        this.albumRepository.deleteById(id);
+    }
 }
 
 

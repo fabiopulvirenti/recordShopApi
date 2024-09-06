@@ -11,4 +11,5 @@ public interface AlbumService {
     Album insertAlbum(Album album);
     Optional<Album> getAlbumById(long id);
     Optional<Album> changeAlbum(long id, Album newVersion);
+    void deleteAlbum(long id);
 }
