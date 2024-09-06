@@ -41,6 +41,16 @@ public class AlbumController {
         return new ResponseEntity<>(newAlbum, httpHeaders, HttpStatus.CREATED);
     }
 
+    @PutMapping("/albums/{id}")
+    public ResponseEntity<Album> updateBook(@PathVariable Long id, @RequestBody Album album){
+        Optional<Album> newVersionOpt = this.albumService.changeAlbum(id, album);
+        if(newVersionOpt.isPresent()){
+            return new ResponseEntity<>(newVersionOpt.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
 

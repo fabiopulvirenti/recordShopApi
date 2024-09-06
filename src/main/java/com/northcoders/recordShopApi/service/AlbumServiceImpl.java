@@ -37,7 +37,17 @@ public class AlbumServiceImpl implements AlbumService {
         Optional<Album> album =this.albumRepository.findById(id);
         return album;
     }
+
+    @Override
+    public Optional<Album> changeAlbum(long id, Album newVersion) {
+        if(!albumRepository.existsById(id)) {
+            return Optional.empty();
+        }
+        newVersion.setId(id);
+        Album updatedAlbum = this.albumRepository.save(newVersion);
+        return Optional.of(updatedAlbum);
     }
+}
 
 
 
