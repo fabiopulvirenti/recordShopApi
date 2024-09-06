@@ -34,13 +34,13 @@ public class AuthorController {
         }
     }
 
-//    @PostMapping({"/",""})
-//    public ResponseEntity<Author> addAuthor(@RequestBody Author author){
-//        Author newAuthor = authorService.insertAuthor(author);
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add("author", "/api/v1/author/" + newAuthor.getId());
-//        return new ResponseEntity<>(newAuthor, httpHeaders, HttpStatus.CREATED);
-//    }
+    @PostMapping({"/authors"})
+    public ResponseEntity<Author> addAuthor(@RequestBody Author author){
+        Author newAuthor = authorService.insertAuthor(author);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("authors", "/api/v1/authors/" + newAuthor.getId());
+        return new ResponseEntity<>(newAuthor, httpHeaders, HttpStatus.CREATED);
+    }
 
 
 }
