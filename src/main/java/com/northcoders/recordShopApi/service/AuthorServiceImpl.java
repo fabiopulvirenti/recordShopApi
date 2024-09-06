@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -24,4 +25,20 @@ public class AuthorServiceImpl implements AuthorService {
 
         return AuthorList;
     }
-}
+
+    @Override
+    public Author insertAuthor(Author author) {
+        return authorRepository.save(author);
+    }
+
+    @Override
+    public Optional<Author> getAllAuthorById(long id) {
+        Optional<Author> author =this.authorRepository.findById(id);
+        return author;
+    }
+
+
+    }
+
+
+
