@@ -7,6 +7,7 @@ import com.northcoders.recordShopApi.service.AuthorServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,12 +31,14 @@ public class AuthorControllerTest {
     @Mock
     private AuthorServiceImpl mockAuthorServiceImpl;
 
+
+    @InjectMocks
+    private AuthorController authorController;
     @Autowired
     private MockMvc mockMvcController;
 
     private ObjectMapper mapper;
-    @Autowired
-    private AuthorController authorController;
+
 
     @BeforeEach
     public void setup() {
