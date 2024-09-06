@@ -70,6 +70,5 @@ public class AuthorControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[2].authorName").value("Maurizio Pollini"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].id").value(4))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[3].authorName").value("Dolly Parton"));
-
     }
 }

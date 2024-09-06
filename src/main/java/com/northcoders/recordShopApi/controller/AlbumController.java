@@ -1,14 +1,13 @@
 package com.northcoders.recordShopApi.controller;
 
 import com.northcoders.recordShopApi.model.Album;
+import com.northcoders.recordShopApi.model.Author;
 import com.northcoders.recordShopApi.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +32,19 @@ public class AlbumController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
+    @PostMapping({"/albums"})
+    public ResponseEntity<Album> addAuthor(@RequestBody Album album){
+        Album newAlbum = albumService.insertAlbum(album);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("authors", "/api/v1/albums/" + newAlbum.getId());
+        return new ResponseEntity<>(newAlbum, httpHeaders, HttpStatus.CREATED);
+    }
+
+
+
+
+
 }
 
 
