@@ -25,7 +25,7 @@ public class AlbumController {
         return albumService.getAllAlbums();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/albums/{id}")
     public ResponseEntity<Album> getAlbumById(@PathVariable long id){
         Optional<Album> albumOpt = this.albumService.getAlbumById(id);
         if(albumOpt.isPresent()){
