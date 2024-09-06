@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -103,6 +104,29 @@ public class AlbumControllerTest {
 
         verify(mockAlbumServiceImpl).getAlbumById(1L);
     }
+
+    @Test
+    @DisplayName("test method checks if an album has been inserted")
+    public void testPostAddAlbum() throws Exception {
+
+        Author author1 = new Author(1,"PinkFloyd");
+
+        Album album1= new Album(1L,"the Wall",author1, Genre.Rock,1979);
+
+        when(mockAlbumServiceImpl.insertAlbum(album1)).thenReturn(album1);
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders.post("/api/v1/albums/")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(mapper.writeValueAsString(album1)))
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+
+        verify(mockAlbumServiceImpl, times(1)).insertAlbum(album1);
+    }
+
+
+
+
+
 
 
 
