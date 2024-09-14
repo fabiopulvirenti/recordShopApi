@@ -3,9 +3,6 @@ package com.northcoders.recordShopApi.service;
 import com.northcoders.recordShopApi.model.Album;
 import com.northcoders.recordShopApi.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,6 +48,21 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public void deleteAlbum(long id) {
         this.albumRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Album> getAlbumsByYear(int year) {
+        return this.albumRepository.findAlbumByReleaseYear(year);
+    }
+
+    @Override
+    public List<Album> getAlbumsByYearAndAlbumName(int year, String albumName) {
+        return this.albumRepository.findAlbumByReleaseYearAndAlbumName(year, albumName);
+    }
+
+    @Override
+    public List<Album> getAlbumByAlbumName(String albumName) {
+        return this.albumRepository.findByAlbumName(albumName);
     }
 }
 

@@ -17,7 +17,8 @@ public class Album {
     @GeneratedValue
     private long id;
 
-    private String album_title;
+    @Column(name = "album_title")
+    private String albumName;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
@@ -25,7 +26,8 @@ public class Album {
 
     Genre genre;
 
-    int release_year;
+    @Column(name = "release_year")
+    int releaseYear;
 
 
 }

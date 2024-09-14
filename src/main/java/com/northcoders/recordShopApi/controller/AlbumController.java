@@ -24,9 +24,22 @@ public class AlbumController {
     private AlbumService albumService;
 
     @GetMapping("/albums")
-    public List<Album> getAllAlbums() {
-        return albumService.getAllAlbums();
+    public List<Album> getAllAlbums(@RequestParam(name="year",required = false) Integer releaseYear,
+                                    @RequestParam(name="album_name",required=false)String albumName) {
+        if(releaseYear !=null && albumName !=null) {
+            return albumService.getAlbumsByYearAndAlbumName(releaseYear, albumName);
+        } else if(releaseYear == null && albumName != null) {
+            return albumService.getAlbumByAlbumName(albumName);
+        } else if(releaseYear!=null && albumName ==null){
+            return albumService.getAlbumsByYear(releaseYear);
+        } else {
+            return albumService.getAllAlbums();
+        }
     }
+
+
+
+
 
     @GetMapping("/albums/{id}")
     public ResponseEntity<Album> getAlbumById(@PathVariable long id){
